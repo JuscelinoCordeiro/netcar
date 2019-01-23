@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: 17-Jan-2019 às 14:12
--- Versão do servidor: 10.1.37-MariaDB-0+deb9u1
--- PHP Version: 7.0.33-0+deb9u1
+-- Host: localhost
+-- Tempo de geração: 22/01/2019 às 22:27
+-- Versão do servidor: 5.7.24-0ubuntu0.16.04.1
+-- Versão do PHP: 7.0.32-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,54 +17,97 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `netcar`
+-- Banco de dados: `netcar`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `agendamento`
+-- Estrutura para tabela `agendamento`
 --
 
 CREATE TABLE `agendamento` (
   `cd_agendamento` int(11) NOT NULL,
   `cd_usuario` int(11) NOT NULL,
   `cd_tpveiculo` int(11) NOT NULL,
-  `cd_servico` int(11) NOT NULL
+  `cd_servico` int(11) NOT NULL,
+  `placa` varchar(8) DEFAULT NULL,
+  `data` date NOT NULL,
+  `horario` time NOT NULL,
+  `status` tinyint(4) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `agendamento`
+-- Fazendo dump de dados para tabela `agendamento`
 --
 
-INSERT INTO `agendamento` (`cd_agendamento`, `cd_usuario`, `cd_tpveiculo`, `cd_servico`) VALUES
-(1, 1, 2, 3);
+INSERT INTO `agendamento` (`cd_agendamento`, `cd_usuario`, `cd_tpveiculo`, `cd_servico`, `placa`, `data`, `horario`, `status`) VALUES
+(1, 2, 2, 2, 'pai-4085', '2019-01-18', '19:00:00', 1),
+(2, 2, 2, 2, 'PAI-4085', '0023-07-12', '18:00:00', 1),
+(3, 7, 2, 4, 'pak-1841', '0023-07-12', '19:05:00', 0),
+(5, 6, 7, 2, 'knu-2424', '2019-01-18', '18:20:00', 1),
+(6, 2, 2, 2, 'pbc-0909', '2019-01-22', '12:00:00', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `servico`
+-- Estrutura para tabela `faturamento`
+--
+
+CREATE TABLE `faturamento` (
+  `cd_data` int(11) NOT NULL,
+  `data` date NOT NULL,
+  `faturamento` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Fazendo dump de dados para tabela `faturamento`
+--
+
+INSERT INTO `faturamento` (`cd_data`, `data`, `faturamento`) VALUES
+(1, '2019-01-18', 30),
+(2, '2019-01-22', 30),
+(3, '0023-07-12', 30),
+(4, '2019-01-22', 30),
+(5, '2019-01-22', 15);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `horario`
+--
+
+CREATE TABLE `horario` (
+  `cd_horario` int(11) NOT NULL,
+  `horario` time DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `servico`
 --
 
 CREATE TABLE `servico` (
   `cd_servico` int(11) NOT NULL,
-  `servico` varchar(45) NOT NULL
+  `servico` varchar(45) NOT NULL,
+  `ativo` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `servico`
+-- Fazendo dump de dados para tabela `servico`
 --
 
-INSERT INTO `servico` (`cd_servico`, `servico`) VALUES
-(1, 'lavagem'),
-(2, 'americana'),
-(3, 'aspiração'),
-(4, 'geral');
+INSERT INTO `servico` (`cd_servico`, `servico`, `ativo`) VALUES
+(1, 'lavagem simples', 1),
+(2, 'lavagem americana', 1),
+(3, 'aspiração', 1),
+(4, 'lavagem geral', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tarifa`
+-- Estrutura para tabela `tarifa`
 --
 
 CREATE TABLE `tarifa` (
@@ -74,7 +117,7 @@ CREATE TABLE `tarifa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tarifa`
+-- Fazendo dump de dados para tabela `tarifa`
 --
 
 INSERT INTO `tarifa` (`cd_tpveiculo`, `cd_servico`, `preco`) VALUES
@@ -109,7 +152,7 @@ INSERT INTO `tarifa` (`cd_tpveiculo`, `cd_servico`, `preco`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_veiculo`
+-- Estrutura para tabela `tipo_veiculo`
 --
 
 CREATE TABLE `tipo_veiculo` (
@@ -118,7 +161,7 @@ CREATE TABLE `tipo_veiculo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tipo_veiculo`
+-- Fazendo dump de dados para tabela `tipo_veiculo`
 --
 
 INSERT INTO `tipo_veiculo` (`cd_tpveiculo`, `tipo`) VALUES
@@ -133,7 +176,7 @@ INSERT INTO `tipo_veiculo` (`cd_tpveiculo`, `tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura para tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -143,12 +186,12 @@ CREATE TABLE `usuario` (
   `celular` varchar(45) DEFAULT NULL,
   `fixo` varchar(45) DEFAULT NULL,
   `senha` varchar(8) DEFAULT NULL,
-  `nivel` int(11) DEFAULT '0',
+  `nivel` tinyint(4) DEFAULT '0',
   `idt` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Fazendo dump de dados para tabela `usuario`
 --
 
 INSERT INTO `usuario` (`cd_usuario`, `nome`, `endereco`, `celular`, `fixo`, `senha`, `nivel`, `idt`) VALUES
@@ -163,7 +206,7 @@ INSERT INTO `usuario` (`cd_usuario`, `nome`, `endereco`, `celular`, `fixo`, `sen
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `veiculo`
+-- Estrutura para tabela `veiculo`
 --
 
 CREATE TABLE `veiculo` (
@@ -171,11 +214,11 @@ CREATE TABLE `veiculo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Índices de tabelas apagadas
 --
 
 --
--- Indexes for table `agendamento`
+-- Índices de tabela `agendamento`
 --
 ALTER TABLE `agendamento`
   ADD PRIMARY KEY (`cd_agendamento`),
@@ -184,71 +227,93 @@ ALTER TABLE `agendamento`
   ADD KEY `fk_agendamento_servico1` (`cd_servico`);
 
 --
--- Indexes for table `servico`
+-- Índices de tabela `faturamento`
+--
+ALTER TABLE `faturamento`
+  ADD PRIMARY KEY (`cd_data`);
+
+--
+-- Índices de tabela `horario`
+--
+ALTER TABLE `horario`
+  ADD PRIMARY KEY (`cd_horario`);
+
+--
+-- Índices de tabela `servico`
 --
 ALTER TABLE `servico`
   ADD PRIMARY KEY (`cd_servico`);
 
 --
--- Indexes for table `tarifa`
+-- Índices de tabela `tarifa`
 --
 ALTER TABLE `tarifa`
   ADD KEY `fk_tarifa_tipo_veiculo` (`cd_tpveiculo`),
   ADD KEY `fk_tarifa_servico1` (`cd_servico`);
 
 --
--- Indexes for table `tipo_veiculo`
+-- Índices de tabela `tipo_veiculo`
 --
 ALTER TABLE `tipo_veiculo`
   ADD PRIMARY KEY (`cd_tpveiculo`);
 
 --
--- Indexes for table `usuario`
+-- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`cd_usuario`);
 
 --
--- Indexes for table `veiculo`
+-- Índices de tabela `veiculo`
 --
 ALTER TABLE `veiculo`
   ADD PRIMARY KEY (`cd_veiculo`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
--- AUTO_INCREMENT for table `agendamento`
+-- AUTO_INCREMENT de tabela `agendamento`
 --
 ALTER TABLE `agendamento`
-  MODIFY `cd_agendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cd_agendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `servico`
+-- AUTO_INCREMENT de tabela `faturamento`
+--
+ALTER TABLE `faturamento`
+  MODIFY `cd_data` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de tabela `horario`
+--
+ALTER TABLE `horario`
+  MODIFY `cd_horario` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de tabela `servico`
 --
 ALTER TABLE `servico`
   MODIFY `cd_servico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `tipo_veiculo`
+-- AUTO_INCREMENT de tabela `tipo_veiculo`
 --
 ALTER TABLE `tipo_veiculo`
   MODIFY `cd_tpveiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `cd_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `veiculo`
+-- AUTO_INCREMENT de tabela `veiculo`
 --
 ALTER TABLE `veiculo`
   MODIFY `cd_veiculo` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Constraints for dumped tables
+-- Restrições para dumps de tabelas
 --
 
 --
--- Limitadores para a tabela `agendamento`
+-- Restrições para tabelas `agendamento`
 --
 ALTER TABLE `agendamento`
   ADD CONSTRAINT `fk_agendamento_servico1` FOREIGN KEY (`cd_servico`) REFERENCES `servico` (`cd_servico`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -256,7 +321,7 @@ ALTER TABLE `agendamento`
   ADD CONSTRAINT `fk_table1_usuario1` FOREIGN KEY (`cd_usuario`) REFERENCES `usuario` (`cd_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `tarifa`
+-- Restrições para tabelas `tarifa`
 --
 ALTER TABLE `tarifa`
   ADD CONSTRAINT `fk_tarifa_servico1` FOREIGN KEY (`cd_servico`) REFERENCES `servico` (`cd_servico`) ON DELETE NO ACTION ON UPDATE NO ACTION,

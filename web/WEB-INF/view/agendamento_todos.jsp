@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : listarAgendamentos
     Created on : 05/12/2014, 10:32:21
     Author     : apolo
@@ -16,14 +16,14 @@
         <thead>
             <tr>
                 <th>ORD</th>
-                <th>USUÁRIO</th>                    
-                <th>TIPO DE VEICULO</th>                    
-                <th>PLACA</th>                    
-                <th>SERVIÇO</th>                    
-                <th>DATA</th>                    
-                <th>HORÁRIO</th>                    
-                <th>VALOR</th>                    
-                <th>STATUS</th>                    
+                <th>USUÁRIO</th>
+                <th>TIPO DE VEICULO</th>
+                <th>PLACA</th>
+                <th>SERVIÇO</th>
+                <th>DATA</th>
+                <th>HORÁRIO</th>
+                <th>VALOR</th>
+                <th>STATUS</th>
             </tr>
         </thead>
         <%
@@ -42,11 +42,21 @@
                 <%
                     int status = agendamento.getStatus();
                     if (status == 0) {
-                        out.println("ABERTO");
-                    } else {
-                        out.println("FINALIZADO");
-                    }
                 %>
+                <span class="label label-warning">
+                    <%
+                        out.println("ABERTO");
+                    %>
+                </span>
+                <a class="finalizar" data-id="<% out.println(agendamento.getCdAgendamento()); %> " href="javascript: void(0)"><img src="img/b_finalizar.png" alt="finalizar" title="Finalizar serviço" border="0"/></a>
+                <a href="/netcar/agendamento_editar?cd_agendamento=<% out.println(agendamento.getCdAgendamento()); %>"><img src="img/b_edit.png" alt="editar" title="Editar agendamento" border="0"/></a>
+                <a class="excluir" data-id="<% out.println(agendamento.getCdAgendamento()); %> " href="javascript: void(0)"><img src="img/b_excluir.png" alt="excluir" title="Excluir agendamento" border="0"/></a>
+                    <%
+
+                        } else {
+                            out.println("FINALIZADO");
+                        }
+                    %>
             </td>
         </tr>
         <%
@@ -57,9 +67,9 @@
 </div>
 
 <script>
-    $(function () {
+    $(function() {
 
-        $(".finalizar").click(function () {
+        $(".finalizar").click(function() {
             var id = $(this).data("id");
             if (confirm("Você deseja finalizar o serviço?")) {
                 window.location = "/netcar/agendamento_finalizar?id=" + id;
@@ -68,9 +78,9 @@
 
     });
 
-    $(function () {
+    $(function() {
 
-        $(".excluir").click(function () {
+        $(".excluir").click(function() {
             var id = $(this).data("id");
             if (confirm("Você deseja excluir o agendamento?")) {
                 window.location = "/netcar/agendamento_excluir?id=" + id;
@@ -78,4 +88,4 @@
         });
 
     });
-</script>    
+</script>

@@ -60,7 +60,8 @@ public class ServicoDAO {
     public List<Servico> getListaDeServico() {
         try {
             List<Servico> lista = new ArrayList<>();
-            PreparedStatement stmt = this.conexao.prepareStatement("select * from servico where ativo = 1");
+            PreparedStatement stmt = this.conexao.prepareStatement("select * from servico");
+//            PreparedStatement stmt = this.conexao.prepareStatement("select * from servico where ativo = 1");
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -92,7 +93,7 @@ public class ServicoDAO {
             throw new RuntimeException(e);
         }
     }
-    
+
     public void desativaServico(int codigo) {
         String sql = "update servico set ativo = ? where cd_servico = ?";
         try {

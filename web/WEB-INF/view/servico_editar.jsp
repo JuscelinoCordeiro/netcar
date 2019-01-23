@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : servico_editar
     Created on : 07/12/2014, 17:25:52
     Author     : apolo
@@ -10,7 +10,7 @@
     Servico servico = dao.getServico(codigo);
 %>
 <div class="view-dados">
-    <h2 class="titulo">Editar serviço</h2> 
+    <h2 class="titulo">Editar serviço</h2>
     <a class="btn btn-success pull-right" href="/netcar/servico_listar"><i class="icon-arrow-left icon-white"></i>Voltar</a>
     <form class="form-horizontal" action="/netcar/servico_editar" method="post">
         <div class="control-group">
@@ -29,7 +29,7 @@
             <div class="controls">
 
                 <input type="hidden" name="cd_servico" value="<%= codigo%>" />
-                <input type="submit" value="Gravar" />
+                <input class="btn btn-primary" type="submit" value="Gravar" />
             </div>
         </div>
     </form>

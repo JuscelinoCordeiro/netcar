@@ -95,7 +95,7 @@ public class ControleServlet extends HttpServlet {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(ControleServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-//exclusao de agendamento            
+//exclusao de agendamento
         } else if (userPath.equals("/agendamento_excluir")) {
             try {
                 AgendamentoDAO dao = new AgendamentoDAO();
@@ -105,10 +105,9 @@ public class ControleServlet extends HttpServlet {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(ControleServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }            
-        
-//montagem da url para redirecionamento
+        }
 
+//montagem da url para redirecionamento
         String url = "/WEB-INF/view" + userPath + ".jsp";
 
         try {
@@ -158,7 +157,7 @@ public class ControleServlet extends HttpServlet {
                 Logger.getLogger(ControleServlet.class.getName()).log(Level.SEVERE, null, ex);
                 userPath = "/mensagem_erro";
             }
-//editar usuario            
+//editar usuario
         } else if (userPath.equals("/usuario_editar")) {
             try {
                 String nome = request.getParameter("nome");
@@ -292,7 +291,7 @@ public class ControleServlet extends HttpServlet {
             }
         }
 
- //montagem da url para redirecionamento
+        //montagem da url para redirecionamento
         String url = "/WEB-INF/view" + userPath + ".jsp";
 
         try {

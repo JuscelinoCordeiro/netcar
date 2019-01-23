@@ -29,31 +29,59 @@ public class FaturamentoDAO {
         this.conexao = new ConnectionFactory().getConnection();
     }
 
-    public Faturamento getFaturamento(Calendar data) {
-        String sql = "select * from faturamento where data = ?";
+    public List<Faturamento> getFaturamento() {
+        java.util.Date d = new java.util.Date();
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("yyyy/MM/dd");
+        String dataBusca = dataFormatada.format(d);
         Faturamento busca = new Faturamento();
+
+        String sql = "select * from faturamento where data = ?";
+        List<Faturamento> lista = new ArrayList<>();
         try {
             PreparedStatement stmt;
             ResultSet rs;
             stmt = conexao.prepareStatement(sql);
-            stmt.setDate(1, new Date(data.getTimeInMillis()));
+            stmt.setString(1, dataBusca);
             rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                busca.setCdFaturamento(rs.getInt("cd_faturamento"));
-                busca.setFaturamento(rs.getInt("faturamento"));
+            while (rs.next()) {
+                Faturamento fat = new Faturamento();
+                fat.setCdFaturamento(rs.getInt(1));
 
-                Calendar data2 = Calendar.getInstance();
-                data2.setTime(rs.getDate("data"));
-                busca.setData(data);
+                Calendar data = Calendar.getInstance();
+                data.setTime(rs.getDate(2));
+                fat.setData(data);
+                fat.setFaturamento(rs.getFloat(3));
+                lista.add(fat);
             }
+            rs.close();
             stmt.close();
+            return lista;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return busca;
+//        try {
+//            PreparedStatement stmt;
+//            ResultSet rs;
+//            stmt = conexao.prepareStatement(sql);
+//            stmt.setString(1, dataBusca);
+//            rs = stmt.executeQuery();
+//
+//            if (rs.next()) {
+//                busca.setCdFaturamento(rs.getInt("cd_data"));
+//                busca.setFaturamento(rs.getInt("faturamento"));
+//
+//                Calendar data2 = Calendar.getInstance();
+//                data2.setTime(rs.getDate("data"));
+//                busca.setData(data2);
+//            }
+//            stmt.close();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return busca;
     }
-    
+
     public List<Faturamento> getFaturamento30Dias() {
         String sql = "select * from faturamento limit 30";
         List<Faturamento> lista = new ArrayList<>();
@@ -66,7 +94,7 @@ public class FaturamentoDAO {
             while (rs.next()) {
                 Faturamento fat = new Faturamento();
                 fat.setCdFaturamento(rs.getInt(1));
-                
+
                 Calendar data = Calendar.getInstance();
                 data.setTime(rs.getDate(2));
                 fat.setData(data);
@@ -79,9 +107,9 @@ public class FaturamentoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        
+
     }
-    
+
     public List<Faturamento> getFaturamentoMensal() {
         String sql = "select * from faturamento limit 30";
         List<Faturamento> lista = new ArrayList<>();
@@ -94,7 +122,7 @@ public class FaturamentoDAO {
             while (rs.next()) {
                 Faturamento fat = new Faturamento();
                 fat.setCdFaturamento(rs.getInt(1));
-                
+
                 Calendar data = Calendar.getInstance();
                 data.setTime(rs.getDate(2));
                 fat.setData(data);
@@ -107,7 +135,7 @@ public class FaturamentoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        
+
     }
 
     public void faturamento(Agendamento ag) {

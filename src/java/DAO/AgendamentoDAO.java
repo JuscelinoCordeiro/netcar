@@ -48,11 +48,11 @@ public class AgendamentoDAO {
 
     public Agendamento getAgendamento(int codigo) {
         String sql = "select ag.*, user.nome, tp.*, sv.*, ta.preco "
-                    + "from agendamento as ag inner join usuario as user on ag.cd_usuario = user.cd_usuario "
-                    + "inner join tipo_veiculo as tp on tp.cd_tpveiculo = ag.cd_tpveiculo "
-                    + "inner join servico as sv on ag.cd_servico = sv.cd_servico "
-                    + "inner join tarifa as ta on tp.cd_tpveiculo = ta.cd_tpveiculo and sv.cd_servico = ta.cd_servico "
-                    + "where cd_agendamento = ?";
+                + "from agendamento as ag inner join usuario as user on ag.cd_usuario = user.cd_usuario "
+                + "inner join tipo_veiculo as tp on tp.cd_tpveiculo = ag.cd_tpveiculo "
+                + "inner join servico as sv on ag.cd_servico = sv.cd_servico "
+                + "inner join tarifa as ta on tp.cd_tpveiculo = ta.cd_tpveiculo and sv.cd_servico = ta.cd_servico "
+                + "where cd_agendamento = ?";
 
         Agendamento busca = new Agendamento();
 
@@ -92,7 +92,7 @@ public class AgendamentoDAO {
             java.util.Date d = new java.util.Date();
             SimpleDateFormat dataFormatada = new SimpleDateFormat("yyyy/MM/dd");
             String dataBusca = dataFormatada.format(d);
-            
+
             List<Agendamento> lista = new ArrayList<>();
             PreparedStatement stmt = this.conexao.prepareStatement("select ag.*, user.nome, tp.*, sv.*, ta.preco "
                     + "from agendamento as ag inner join usuario as user on ag.cd_usuario = user.cd_usuario "
@@ -132,13 +132,13 @@ public class AgendamentoDAO {
             throw new RuntimeException(e);
         }
     }
-    
+
     public List<Agendamento> getTodosAgendamentos() {
         try {
             java.util.Date d = new java.util.Date();
             SimpleDateFormat dataFormatada = new SimpleDateFormat("yyyy/MM/dd");
             String dataBusca = dataFormatada.format(d);
-            
+
             List<Agendamento> lista = new ArrayList<>();
             PreparedStatement stmt = this.conexao.prepareStatement("select ag.*, user.nome, tp.*, sv.*, ta.preco "
                     + "from agendamento as ag inner join usuario as user on ag.cd_usuario = user.cd_usuario "
@@ -146,7 +146,7 @@ public class AgendamentoDAO {
                     + "inner join servico as sv on ag.cd_servico = sv.cd_servico "
                     + "inner join tarifa as ta on tp.cd_tpveiculo = ta.cd_tpveiculo and sv.cd_servico = ta.cd_servico "
                     + "order by ag.data desc");
-            
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -201,12 +201,12 @@ public class AgendamentoDAO {
             throw new RuntimeException(e);
         }
     }
-    
+
     public void finalizaAgendamento(int codigo) {
         String sql = "update agendamento set status = 1 where cd_agendamento = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setInt(1, codigo);            
+            stmt.setInt(1, codigo);
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {

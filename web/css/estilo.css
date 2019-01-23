@@ -1,4 +1,4 @@
-/* 
+/*
     Created on : 02/12/2014, 20:02:17
     Author     : juscelino
 */
@@ -39,10 +39,10 @@
 
 #conteudo{
     background-color: #fff;
-    /*width: 1000px;*/
-    margin: 10px;
+    width: 1024px;
+    margin-top: 15px;
     /*padding: 10px 0;*/
-    /*border: 1px solid #bbb;*/
+    border: 1px solid #666;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -84,7 +84,7 @@
     color: #fff;
 }
 
-#li-logout:hover{    
+#li-logout:hover{
     background: #aaa;
     border: 1px solid #333;
     border-radius: 5px;
@@ -105,7 +105,7 @@
     color: #000;
     /*font-family: Georgia, 'Times New Roman', Times, serif;*/
     text-transform: uppercase;
-    
+
     /* inicio da formatação do gradiente para a tabela */
     background: -moz-linear-gradient(top, #f5f5f5, #999);
     background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#999));
@@ -128,7 +128,7 @@ table.list th{
     color: #111;
     /*font-family: Georgia, 'Times New Roman', Times, serif;*/
     text-transform: uppercase;
-    
+
     /* inicio da formatação do gradiente para a tabela */
     background: -moz-linear-gradient(top, #f5f5f5, #999);
     background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#999));
@@ -193,7 +193,7 @@ table td img{
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    border: 3px solid #444; 
+    border: 3px solid #444;
 }
 
 #green{
@@ -205,7 +205,7 @@ table td img{
 }
 
 .nome_sistema{
-    width: 800px;   
+    width: 800px;
     float: left;
     font: 50px 'Trebuchet MS', Arial, Helvetica, sans-serif;
     text-align: center;
