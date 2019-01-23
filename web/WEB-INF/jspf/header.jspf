@@ -61,7 +61,7 @@
                                 <li><a href="/netcar/faturamento_mensal"><i class="icon-calendar"></i> Últimos 30 dias </a></li>
                             </ul>
                         </li>
-                        <li><a href="/netcar/mensagem_erro"><i class="icon-question-sign"></i> Ajuda</a></li>
+                        <li><a href="/netcar/ajuda"><i class="icon-question-sign"></i> Ajuda</a></li>
                     </ul>
                     <ul class="nav pull-right">
                         <li class="divider-vertical"></li>

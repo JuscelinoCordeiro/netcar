@@ -42,7 +42,7 @@ import modelo.Usuario;
             "/usuario_listar", "/usuario_adicionar", "/usuario_editar", "/usuario_excluir",
             "/tarifa_listar", "/tarifa_editar",
             "/faturamento", "/faturamento_diario", "/faturamento_mensal",
-            "/mensagem", "/mensagem_erro"
+            "/mensagem", "/mensagem_erro", "/ajuda"
         })
 
 public class ControleServlet extends HttpServlet {
