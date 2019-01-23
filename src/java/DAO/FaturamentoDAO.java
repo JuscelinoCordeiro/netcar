@@ -35,7 +35,8 @@ public class FaturamentoDAO {
         String dataBusca = dataFormatada.format(d);
         Faturamento busca = new Faturamento();
 
-        String sql = "select * from faturamento where data = ?";
+//        String sql = "select * from faturamento where data = ?";
+        String sql = "SELECT data, SUM(faturamento) as faturamento FROM faturamento WHERE data = ? ";
         List<Faturamento> lista = new ArrayList<>();
         try {
             PreparedStatement stmt;
@@ -46,7 +47,7 @@ public class FaturamentoDAO {
 
             while (rs.next()) {
                 Faturamento fat = new Faturamento();
-                fat.setCdFaturamento(rs.getInt(1));
+//                fat.setCdFaturamento(rs.getInt(1));
 
                 Calendar data = Calendar.getInstance();
                 data.setTime(rs.getDate(2));
