@@ -8,18 +8,6 @@
             <file>file:/home/hefesto/Documentos/netcar/web/WEB-INF/error.jsp</file>
             <file>file:/home/hefesto/Documentos/netcar/src/java/controle/ControleServlet.java</file>
             <file>file:/home/hefesto/Documentos/netcar/src/java/DAO/FaturamentoDAO.java</file>
-            <file>file:/home/mortein/Documentos/netcar/web/WEB-INF/view/agendamento_listar.jsp</file>
-            <file>file:/home/mortein/Documentos/netcar/src/java/modelo/Faturamento.java</file>
-            <file>file:/home/mortein/Documentos/netcar/web/WEB-INF/view/agendamento_todos.jsp</file>
-            <file>file:/home/mortein/Documentos/netcar/src/java/DAO/FaturamentoDAO.java</file>
-            <file>file:/home/mortein/Documentos/netcar/web/css/estilo.css</file>
-            <file>file:/home/mortein/Documentos/netcar/web/WEB-INF/view/faturamento_mensal.jsp</file>
-            <file>file:/home/mortein/Documentos/netcar/src/java/controle/ControleServlet.java</file>
-            <file>file:/home/mortein/Documentos/netcar/web/WEB-INF/view/faturamento_diario.jsp</file>
-            <file>file:/home/mortein/Documentos/netcar/src/java/DAO/AgendamentoDAO.java</file>
-            <file>file:/home/mortein/Documentos/netcar/web/WEB-INF/jspf/header.jspf</file>
-            <file>file:/home/hefesto/Documentos/netcar/web/index.jsp</file>
-            <file>file:/home/hefesto/Documentos/netcar/web/WEB-INF/view/faturamento.jsp</file>
         </group>
     </open-files>
 </project-private>

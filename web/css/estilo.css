@@ -57,6 +57,12 @@
     text-transform: uppercase;
 }
 
+#div-center{
+    position: relative;
+    left: 50px;
+    /*margin-right: auto;*/
+}
+
 
 #rodape {
     /*    height: 60px;
@@ -184,7 +190,7 @@ table td img{
 .view-dados{
     background: #eee;
     padding: 10px;
-    margin-top: 1px;
+    margin-top: 20px;
     margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -194,6 +200,13 @@ table td img{
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border: 3px solid #444;
+}
+
+.div-login{
+    position: relative;
+    width: 300px;
+    height: 200px;
+    border: 1px solid #333;
 }
 
 #green{
