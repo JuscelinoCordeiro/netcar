@@ -5,11 +5,14 @@
  */
 package modelo;
 
+import java.util.Objects;
+
 /**
  *
  * @author apolo
  */
 public class Usuario {
+
     private int cdUsuario;
     private String nome;
     private String endereco;
@@ -82,6 +85,27 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.cdUsuario);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.cdUsuario, other.cdUsuario)) {
+            return false;
+        }
+        return true;
+    }
+
 }

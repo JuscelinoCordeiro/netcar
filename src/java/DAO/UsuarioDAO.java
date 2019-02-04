@@ -136,7 +136,39 @@ public class UsuarioDAO {
         }
     }
 
-//    public boolean existeUsuario(Usuario usuario) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+    public Usuario existeUsuario(int idt, String senha) {
+        String sql = "select * from usuario where idt = ? and senha = ?";
+//        Usuario usuario = new Usuario();
+//        boolean valida;
+        try {
+            PreparedStatement stmt;
+            ResultSet rs;
+            stmt = conexao.prepareStatement(sql);
+//            stmt.clearParameters();
+            stmt.setInt(1, idt);
+            stmt.setString(2, senha);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setCdUsuario(rs.getInt("cd_usuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setEndereco(rs.getString("endereco"));
+                usuario.setCelular(rs.getString("celular"));
+                usuario.setFixo(rs.getString("fixo"));
+                usuario.setIdt(rs.getInt("idt"));
+                usuario.setNivel(rs.getInt("nivel"));
+                return usuario;
+//                valida = true;
+            }
+//            else {
+//                valida = false;
+//            }
+
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

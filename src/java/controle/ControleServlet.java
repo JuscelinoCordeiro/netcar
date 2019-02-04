@@ -289,6 +289,22 @@ public class ControleServlet extends HttpServlet {
                 userPath = "/mensagem";
             } catch (Exception e) {
             }
+        } else if (userPath.equals("/login")) {
+            try {
+                String senha = request.getParameter("senha");
+                int idt = Integer.parseInt(request.getParameter("idt"));
+
+                UsuarioDAO dao = new UsuarioDAO();
+
+                if (dao.existeUsuario(idt, senha)) {
+                    userPath = "/index";
+                } else {
+                    userPath = "/erro";
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         //montagem da url para redirecionamento

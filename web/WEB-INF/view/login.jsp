@@ -1,28 +1,22 @@
-<div class="view-dados">
-    <!--<div class="div-login">-->
-    <form class="form-horizontal">
-        <div class="control-group">
-            <label class="control-label" for="inputEmail">Identidade</label>
-            <div class="controls">
-                <input type="text" name="idt" id="inputLogin" placeholder="Identidade">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="inputPassword">Senha</label>
-            <div class="controls">
-                <input type="password" name="senha" id="inputPassword" placeholder="Senha">
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <!--                <label class="checkbox">
-                                    <input type="checkbox"> Lembre-se de mim
-                                </label>-->
-                <button type="submit" class="btn btn-inverse pull-center">Entrar</button>
-            </div>
-        </div>
-    </form>
-    <!--</div>-->
+<div class="view-login">
+    <div id="formLogin">
+        <form name="form-login" action="/netcar/login" method="post">
+            <fieldset>
+                <legend>NetCar - Login</legend>
+                <label>
+                    Identidade
+                </label>
+                <input class="input-block-level" type="text" name="idt" placeholder="Digite sua identidade" required />
+
+                <label>Senha</label>
+                <input class="input-block-level" type="password" name="senha" placeholder="Digite sua senha" required />
+
+                <input type="hidden" name="acao" value="logar"/>
+                <input type="submit" value="Entrar" class="btn btn-primary btn-login"/>
+
+            </fieldset>
+        </form>
+    </div><!--fim da div formlogin-->
 </div>
 
 

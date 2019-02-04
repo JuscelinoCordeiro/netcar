@@ -18,10 +18,11 @@ public class LoginController {
 
 //    @RequestMapping("efetuaLogin")
     public String efetuaLogin(Usuario usuario, HttpSession session) throws ClassNotFoundException {
-        if (new UsuarioDAO().existeUsuario(usuario)) {
-            session.setAttribute("usuarioLogado", usuario);
-            return "index";
-        }
+//        if (!new UsuarioDAO().existeUsuario(usuario)) {
+//        } else {
+//            session.setAttribute("usuarioLogado", usuario);
+//            return "index";
+//        }
         return "redirect:login";
     }
 
